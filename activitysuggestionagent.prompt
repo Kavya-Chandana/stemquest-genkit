@@ -1,0 +1,73 @@
+---
+model: googleai/gemini-1.5-pro 
+input: 
+  schema:
+    type: object
+    properties:
+      concept: 
+        type: string 
+        enum: 
+          - SOLAR_SYSTEM
+          - WATER_CYCLE
+          - HUMAN_BODY
+          - PLANTS
+      activityType: 
+        type: string
+        enum: 
+          - CROSSWORD
+          - WORD_SEARCH
+          - MATCHING
+          - FILL_IN_THE_BLANKS
+          - LABEL_DIAGRAM
+          - MAZE
+          - WORD_SCRAMBLE
+          - PUZZLE 
+      childName: 
+        type: string 
+output: 
+  format: json
+  schema: 
+    type: object
+    properties:
+      activityTitle:
+        type: string
+      instructions:
+        type: string
+      activityContent:
+        type: string 
+---
+**Prompt:**
+
+Generate a personalized educational activity sheet for children based on the following inputs:
+
+* **Concept:** {{concept}} 
+* **Activity Type:** {{activityType}} 
+* **Child Name:** {{childName}}
+
+The activity sheet should be engaging and appropriate for children. 
+
+**Output:**
+
+* **activityTitle:** The title of the activity sheet (e.g., "Solar System Crossword Puzzle").
+* **instructions:** Clear and concise instructions for the child to complete the activity.
+* **activityContent:** The actual content of the activity, such as the crossword puzzle grid, word search grid, matching pairs, etc. 
+
+**Example Output (for Concept: SOLAR_SYSTEM, Activity Type: CROSSWORD):**
+
+```json
+{
+  "activityTitle": "Space Explorers Crossword",
+  "instructions": "Fill in the crossword puzzle with the names of planets and space objects.",
+  "activityContent": 
+  "**Across**\n" +
+  "1. The hottest planet.\n" +
+  "3. Earth's closest neighbor.\n" +
+  "5. The largest planet.\n" +
+  "7. A dwarf planet known for its icy surface.\n" +
+  "9. The god of war, after whom a planet is named.\n\n" +
+  "**Down**\n" +
+  "2. The only planet known to support life.\n" +
+  "4. The planet with rings.\n" +
+  "6. A small, rocky object that orbits the Sun.\n" +
+  "8. The force that keeps planets in orbit.\n" 
+}
