@@ -1,0 +1,100 @@
+---
+model: googleai/gemini-1.5-pro 
+input: 
+  schema:
+    type: object
+    properties:
+      childName: 
+        type: string
+      favoriteCharacterType:
+        type: string
+        enum:
+          - SUPERHERO
+          - ANIMAL
+          - FANTASY_CREATURE
+          - ROBOT
+          - HISTORICAL_FIGURE
+          - MYTHOLOGICAL_CREATURE
+          - ALIEN
+      favoriteMediaInspiration: 
+        type: string 
+      preferredStoryLength:
+        type: string
+        enum:
+          - SHORT
+          - MEDIUM
+          - LONG
+          - VERY_SHORT
+      storyGenre:
+        type: string
+        enum:
+          - FANTASY
+          - ADVENTURE
+          - MYSTERY
+          - SCIENCE_FICTION
+          - COMEDY
+          - HISTORICAL_FICTION
+          - HORROR
+          - ROMANCE 
+      storyTheme:
+        type: string
+      storySetting:
+        type: string
+      characterSpecialAbility: 
+        type: string
+      numberOfCharacters: 
+        type: integer
+      targetAudience:
+        type: string 
+output: 
+  format: json
+  schema: 
+    type: object
+    properties:
+      storyTitle:
+        type: string
+      mainCharacter:
+        type: object
+        properties:
+          name: 
+            type: string
+          description: 
+            type: string
+          characterType: 
+            type: string 
+          inspiration: 
+            type: string 
+      plot:
+        type: string
+      theme:
+        type: string
+      setting:
+        type: string
+      conflict:
+        type: string
+      resolution:
+        type: string
+---
+**Prompt:**
+
+Generate a children's story based on the following inputs:
+
+* **Child's Name:** {{childName}}
+* **Favorite Character Type:** {{favoriteCharacterType}}
+* **Favorite Media Inspiration:** {{favoriteMediaInspiration}}
+* **Preferred Story Length:** {{preferredStoryLength}}
+* **Story Genre:** {{storyGenre}}
+* **Story Theme:** {{storyTheme}}
+* **Story Setting:** {{storySetting}}
+* **Character's Special Ability:** {{characterSpecialAbility}}
+* **Number of Characters:** {{numberOfCharacters}}
+* **Target Audience:** {{targetAudience}}
+
+The story should include:
+
+* A creative and engaging plot.
+* Well-developed characters with unique personalities.
+* Vivid descriptions and sensory details to bring the story to life.
+* A clear conflict and a satisfying resolution.
+
+Output the story in JSON format as specified in the output schema.
